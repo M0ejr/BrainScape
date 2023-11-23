@@ -18,7 +18,7 @@ class Signin extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    fetch("http://localhost:5000/signin", {
+    fetch("https://bs-server-50x5.onrender.com/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -49,7 +49,7 @@ class Signin extends React.Component {
                 </label>
                 <input
                   onChange={this.onEmailChange}
-                  className="b pa2 input-reset ba bg-transparent w-100 white"
+                  className="b bw1 pa2 input-reset ba bg-transparent w-100 white"
                   type="email"
                   name="email-address"
                   id="email-address"
@@ -61,7 +61,7 @@ class Signin extends React.Component {
                 </label>
                 <input
                   onChange={this.onPasswordChange}
-                  className="b pa2 input-reset ba bg-transparent w-100 white"
+                  className="b bw1 pa2 input-reset ba bg-transparent w-100 white"
                   type="password"
                   name="password"
                   id="password"
@@ -71,7 +71,7 @@ class Signin extends React.Component {
             <div className="">
               <input
                 onClick={this.onSubmitSignIn}
-                className="b ph3 pv2 input-reset ba b--white bg-black grow pointer f6 dib white bg-transparent"
+                className="b bw1 ph3 pv2 input-reset ba b--white bg-black grow pointer f6 dib white bg-transparent"
                 type="submit"
                 value="Sign in"
               />

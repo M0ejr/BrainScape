@@ -11,12 +11,12 @@ const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
          <div className='form center pa4 br3 shadow-5'>
             <input 
               type="text" 
-              className='b pa2 input-reset ba bg-transparent w-100 white' 
+              className='b bw1 pa2 input-reset ba bg-transparent w-100 white' 
               placeholder='Enter the URL of the image' 
               onChange={onInputChange} 
             />
             <button 
-              className='b pa2 input-reset ba bg-transparent w-30 white' 
+              className='b bw1 pa2 input-reset ba bg-transparent w-30 white' 
               onClick={onButtonSubmit}>
                 Detect
             </button>
