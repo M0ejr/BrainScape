@@ -10,8 +10,6 @@ import Rank from "./components/Rank/Rank";
 import "./App.css";
 import ParticlesBg from "particles-bg";
 
-
-
 const initialState = {
   input: "",
   imageUrl: "",
@@ -30,7 +28,7 @@ const initialState = {
 class App extends Component {
   constructor() {
     super();
-    this.state =  initialState;
+    this.state = initialState;
   }
 
   loadUser = (data) => {
@@ -89,7 +87,8 @@ class App extends Component {
             .then((response) => response.json())
             .then((count) => {
               this.setState(Object.assign(this.state.user, { entries: count }));
-            });
+            })
+            .catch(console.log);
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
