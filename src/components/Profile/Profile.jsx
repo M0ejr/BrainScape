@@ -24,7 +24,7 @@ class Profile extends React.Component {
   }
 
   onProfileUpdate = (data) => {
-    fetch(`http://localhost:3000/profile/${this.props.user.id}`,{
+    fetch(`https://bs-server-50x5.onrender.com/profile/${this.props.user.id}`,{
       method: 'post',
       headers: {
         "Content-Type": "application/json",
