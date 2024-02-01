@@ -24,7 +24,7 @@ class Profile extends React.Component {
   }
 
   onProfileUpdate = (data) => {
-    fetch(`http://localhost:3000/profile/${this.props.user.id}`,{
+    fetch(`https://bs-server-50x5.onrender.com/${this.props.user.id}`,{
       method: 'post',
       headers: {
         "Content-Type": "application/json",
@@ -63,15 +63,6 @@ class Profile extends React.Component {
               type="text"
               name="user-name"
               id="name"
-            />
-            <label className='mt2 fw6' htmlFor="user-age">Age:</label>
-            <input
-              onChange={this.onFormChange}
-              className="pa2 ba w-100"
-              placeholder={user.age}
-              type="text"
-              name="user-age"
-              id="age"
             />
             <div className='mt4' style={{ display: 'flex', justifyContent: 'space-evenly'}}>
               <button onClick={() => this.onProfileUpdate({ name, age})} className='b pa2 grow pointer hover-white w-40 bg-light-blue b--black-20'>
