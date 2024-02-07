@@ -16,8 +16,8 @@ const initialState = {
   input: "",
   imageUrl: "",
   boxes: [],
-  route: "signin",
-  isSignedIn: false,
+  route: "home",
+  isSignedIn: true,
   isProfileOpen: false,
   user: {
     id: "",
@@ -164,7 +164,7 @@ class App extends Component {
     const { isSignedIn, imageUrl, route, boxes, isProfileOpen, user } = this.state;
     return (
       <div className="App">
-        <ParticlesBg type="cobweb" bg={true} />
+        <ParticlesBg color="#ffffff" num={100} type="cobweb" bg={true} />
         <Navigation
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}

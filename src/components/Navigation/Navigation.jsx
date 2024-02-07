@@ -1,26 +1,27 @@
 import React from "react";
 import ProfileIcon from "../Profile/ProfileIcon";
+import "./Navigation.css";
 
 const Navigation = ({ onRouteChange, isSignedIn, toggleModal }) => {
   if (isSignedIn) {
     return (
-      <nav style={{ display: "flex", justifyContent: "flex-end" }} className="br3 ba b--black-10 b--black-10 mv4 w-100 w-50-m w-25-1 mw6 shadow-1 center">
+      <nav className="nav-container signed-in">
         <ProfileIcon onRouteChange={onRouteChange} toggleModal={toggleModal} />
-        <p className="f3 white pa3 ma2">BrainScape</p>
+        <p className="logo">BrainScape</p>
       </nav>
     );
   } else {
     return (
-      <nav style={{ display: "flex", justifyContent: "flex-end" }} className="br3 ba b--black-10 b--black-10 mv4 w-100 w-50-m w-25-1 mw6 shadow-1 center">
+      <nav className="nav-container">
         <p
           onClick={() => onRouteChange("signin")}
-          className="f3 link dim white underline pa3 pointer"
+          className="nav-link"
         >
           Sign In
         </p>
         <p
           onClick={() => onRouteChange("register")}
-          className="f3 link dim white underline pa3 pointer"
+          className="nav-link"
         >
           Register
         </p>

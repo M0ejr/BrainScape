@@ -38,13 +38,12 @@ class ProfileIcon extends Component {
                      alt="" 
                   />
                </DropdownToggle>
-               <DropdownMenu className='b--transparent shadow-5' 
+               <DropdownMenu className='bg-near-black' 
                   style={{
-                     marginTop: '20px', 
-                     backgroundColor: 'rgba(255, 255, 255, 0.5)'}}
+                     marginTop: '20px'}}
                >
-                  <DropdownItem onClick={this.props.toggleModal}>View Profile</DropdownItem>
-                  <DropdownItem onClick={() => this.props.onRouteChange('signout')}>Sign Out</DropdownItem>
+                  <DropdownItem className='white' onClick={this.props.toggleModal}>View Profile</DropdownItem>
+                  <DropdownItem className='white' onClick={() => this.props.onRouteChange('signout')}>Sign Out</DropdownItem>
                </DropdownMenu>
                </Dropdown>
             </div>
