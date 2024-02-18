@@ -13,16 +13,10 @@ const Navigation = ({ onRouteChange, isSignedIn, toggleModal }) => {
   } else {
     return (
       <nav className="nav-container">
-        <p
-          onClick={() => onRouteChange("signin")}
-          className="nav-link white"
-        >
+        <p onClick={() => onRouteChange("signin")} className="nav-link white">
           Sign In
         </p>
-        <p
-          onClick={() => onRouteChange("register")}
-          className="nav-link white"
-        >
+        <p onClick={() => onRouteChange("register")} className="nav-link white">
           Register
         </p>
       </nav>

@@ -18,7 +18,7 @@ class Signin extends React.Component {
   };
 
   saveAuthTokenInSession = (token) => {
-    window.sessionStorage.setItem('token', token)
+    window.sessionStorage.setItem("token", token);
   };
 
   onSubmitSignIn = () => {
@@ -28,41 +28,44 @@ class Signin extends React.Component {
       body: JSON.stringify({
         email: this.state.signInEmail,
         password: this.state.signInPassword,
-      })
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.userId && data.success === 'true') {
-          this.saveAuthTokenInSession(data.token)
-            fetch(`https://bs-server-50x5.onrender.com/profile/${data.userId}`, {
-              method: 'get',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': data.token
-              } 
-            })
-            .then(resp => resp.json())
-            .then(user => {
+        if (data.userId && data.success === "true") {
+          this.saveAuthTokenInSession(data.token);
+          fetch(`https://bs-server-50x5.onrender.com/profile/${data.userId}`, {
+            method: "get",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: data.token,
+            },
+          })
+            .then((resp) => resp.json())
+            .then((user) => {
               if (user && user.email) {
                 this.props.loadUser(user);
-                this.props.onRouteChange('home');
+                this.props.onRouteChange("home");
               }
             })
-          .catch(console.log)
+            .catch(console.log);
         }
-      })
-  }
-  
+      });
+  };
+
   render() {
     const { onRouteChange } = this.props;
     return (
       <article className="bg-near-black mv4 w-100 w-50-m w-25-1 mw6 shadow-5 center">
-        <main className="pa4 black-80"> 
+        <main className="pa4 black-80">
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="f1 fw6 ph0 mh0 center white">Sign In</legend>
               <div className="mt3">
-                <label className="db fw6 lh-copy f6 white" htmlFor="email-address">
+                <label
+                  className="db fw6 lh-copy f6 white"
+                  htmlFor="email-address"
+                >
                   Email
                 </label>
                 <input

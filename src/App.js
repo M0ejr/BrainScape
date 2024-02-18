@@ -7,7 +7,7 @@ import Register from "./components/Register/Register";
 import Logo from "./components/Logo/Logo";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
-import Modal from './components/Modal/Modal';
+import Modal from "./components/Modal/Modal";
 import "./App.css";
 import ParticlesBg from "particles-bg";
 import Profile from "./components/Profile/Profile";
@@ -25,7 +25,7 @@ const initialState = {
     email: "",
     entries: 0,
     joined: "",
-    age: ""
+    age: "",
   },
 };
 
@@ -36,35 +36,35 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const token = window.sessionStorage.getItem('token');
+    const token = window.sessionStorage.getItem("token");
     if (token) {
-      fetch('https://bs-server-50x5.onrender.com/signin', {
-        method: 'post',
+      fetch("https://bs-server-50x5.onrender.com/signin", {
+        method: "post",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': token
-        }
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
       })
-        .then(resp => resp.json())
-        .then(data => {
+        .then((resp) => resp.json())
+        .then((data) => {
           if (data && data.id) {
             fetch(`https://bs-server-50x5.onrender.com/profile/${data.id}`, {
-              method: 'get',
+              method: "get",
               headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
-            }
-          })
-          .then(resp => resp.json())
-          .then(user => {
-            if (user && user.email) {
-              this.loadUser(user);
-              this.onRouteChange('home');
-            }
-          })
-        }
-      })
-        .catch(console.log)
+                "Content-Type": "application/json",
+                Authorization: token,
+              },
+            })
+              .then((resp) => resp.json())
+              .then((user) => {
+                if (user && user.email) {
+                  this.loadUser(user);
+                  this.onRouteChange("home");
+                }
+              });
+          }
+        })
+        .catch(console.log);
     }
   }
 
@@ -80,25 +80,25 @@ class App extends Component {
     });
   };
 
-  calculateFaceLocations = (data) => {
+  faceCalculations = (data) => {
     if (data && data.outputs) {
-      return data.outputs[0].data.regions.map(face => {
-          const clarifaiFace = face.region_info.bounding_box;
-          const image = document.getElementById("inputimage");
-          const width = Number(image.width);
-          const height = Number(image.height);
-          return {
-            leftCol: clarifaiFace.left_col * width,
-            topRow: clarifaiFace.top_row * height,
-            rightCol: width - clarifaiFace.right_col * width,
-            bottomRow: height - clarifaiFace.bottom_row * height,
-          };
-        });
-    };
+      return data.outputs[0].data.regions.map((face) => {
+        const clarifaiFace = face.region_info.bounding_box;
+        const image = document.getElementById("inputimage");
+        const width = Number(image.width);
+        const height = Number(image.height);
+        return {
+          leftCol: clarifaiFace.left_col * width,
+          topRow: clarifaiFace.top_row * height,
+          rightCol: width - clarifaiFace.right_col * width,
+          bottomRow: height - clarifaiFace.bottom_row * height,
+        };
+      });
+    }
     return;
   };
 
-  displayFaceBoxes = (boxes) => {
+  displaySquare = (boxes) => {
     if (boxes) {
       this.setState({ boxes: boxes });
     }
@@ -114,7 +114,7 @@ class App extends Component {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": window.sessionStorage.getItem('token')
+        Authorization: window.sessionStorage.getItem("token"),
       },
       body: JSON.stringify({
         input: this.state.input,
@@ -125,9 +125,9 @@ class App extends Component {
         if (response) {
           fetch("https://bs-server-50x5.onrender.com/image", {
             method: "put",
-            headers: { 
+            headers: {
               "Content-Type": "application/json",
-              "Authorization": window.sessionStorage.getItem('token')
+              Authorization: window.sessionStorage.getItem("token"),
             },
             body: JSON.stringify({
               id: this.state.user.id,
@@ -139,7 +139,7 @@ class App extends Component {
             })
             .catch(console.log);
         }
-        this.displayFaceBoxes(this.calculateFaceLocations(response));
+        this.displaySquare(this.faceCalculations(response));
       })
       .catch((err) => console.log(err));
   };
@@ -154,14 +154,15 @@ class App extends Component {
   };
 
   toggleModal = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       ...prevState,
-      isProfileOpen: !prevState.isProfileOpen
-    }))
-  }
+      isProfileOpen: !prevState.isProfileOpen,
+    }));
+  };
 
   render() {
-    const { isSignedIn, imageUrl, route, boxes, isProfileOpen, user } = this.state;
+    const { isSignedIn, imageUrl, route, boxes, isProfileOpen, user } =
+      this.state;
     return (
       <div className="App">
         <ParticlesBg color="#ffffff" num={100} type="cobweb" bg={true} />
@@ -170,15 +171,16 @@ class App extends Component {
           onRouteChange={this.onRouteChange}
           toggleModal={this.toggleModal}
         />
-        { isProfileOpen &&
+        {isProfileOpen && (
           <Modal>
-            <Profile 
-              isProfileOpen={isProfileOpen} 
+            <Profile
+              isProfileOpen={isProfileOpen}
               toggleModal={this.toggleModal}
               loadUser={this.loadUser}
-              user={user} 
+              user={user}
             />
-          </Modal>}
+          </Modal>
+        )}
         {route === "home" ? (
           <div>
             <Logo />
