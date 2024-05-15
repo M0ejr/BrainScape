@@ -10,6 +10,7 @@ const Footer = () => {
             className="link dim white pointer"
             href="https://moejr.dev"
             target="_blank"
+            rel="noreferrer"
           >
             Moejr
           </a>

@@ -25,7 +25,6 @@ const initialState = {
     email: "",
     entries: 0,
     joined: "",
-    age: "",
   },
 };
 
